@@ -1,0 +1,8 @@
+---
+applications:
+- name: traefiktest
+  buildpacks:
+  - binary_buildpack
+  command: ./traefik --configfile=traefik.yml
+  routes:
+  - route: traefiktest.example.com

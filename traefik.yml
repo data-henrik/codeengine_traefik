@@ -1,0 +1,8 @@
+entryPoints:
+  websecure:
+    address: ':8080'
+
+providers:
+  file:
+    filename: ./routes_cf.yml
+    watch: true

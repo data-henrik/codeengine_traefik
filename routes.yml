@@ -1,0 +1,19 @@
+## Dynamic configuration
+http:
+  middlewares:
+    ceapp-header:
+      headers:
+        customRequestHeaders:
+          Host: "appname.project_id.region.codeengine.appdomain.cloud"
+  routers:
+    my-router:
+      entryPoints: ["websecure"]
+      rule: "Host(`traefiktest.example.com`)"
+      service: "my-service"
+      middlewares:
+      - "ceapp-header"
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+        - url: "https://appname.project_id.region.codeengine.appdomain.cloud/"
