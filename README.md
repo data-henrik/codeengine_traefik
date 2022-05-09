@@ -12,3 +12,6 @@ For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom do
 6. Push the app: ibmcloud cf push
 
 Once deployed, the configured URI should serve your Code Engine app.
+
+### Path-based routing
+See the branch [path-based-routing](https://github.com/data-henrik/codeengine_traefik/tree/path-based-routing) for information on how to map incoming requests to separate Code Engine apps based on the path prefix.
