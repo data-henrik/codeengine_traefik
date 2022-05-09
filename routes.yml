@@ -16,8 +16,8 @@ http:
     stripprefixes:
       stripPrefix:
         prefixes:
-          - "/path1"
-          - "/path2"
+          - "/app_path2"
+          - "/app_path3"
         forceSlash: false
   routers:
     app1-router:
@@ -30,7 +30,7 @@ http:
     app2-router:
       entryPoints: ["websecure"]
       priority: 10
-      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/path1/`)"
+      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/app_path2/`)"
       service: "app2-service"
       middlewares:
       - "stripprefixes"
@@ -38,7 +38,7 @@ http:
     app3-router:
       entryPoints: ["websecure"]
       priority: 11
-      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/path2/`)"
+      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/app_path3/`)"
       service: "app3-service"
       middlewares:
       - "stripprefixes"
