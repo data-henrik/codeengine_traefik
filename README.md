@@ -1,5 +1,10 @@
 # Code Engine custom domain with Cloud Foundry and Traefik
+### Path-based routing
 For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom domain. It seems a feature in the making. Until then, I use Traefik (https://traefik.io/traefik/) deployed to IBM Cloud with Public Cloud Foundry as workaround. It only requires few simple steps.
+
+The file [routes.yml](routes.yml) defines three (3) different routes:
+- Apps app2 and app3 serve requests with a path prefix of "/app_path2" and "/app_path3". The path prefixes are stripped away before forwarding those requests.
+- All other requests are served by app1.
 
 ## Instructions
 
@@ -11,4 +16,4 @@ For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom do
 5. Login to IBM Cloud, set the endpoints (ibmcloud target --cf)
 6. Push the app: ibmcloud cf push
 
-Once deployed, the configured URI should serve your Code Engine app.
+Once deployed, the configured URI should serve your Code Engine app (app1). Use the URI with the app-specific prefixes for requests to the applications app2 and app3.
