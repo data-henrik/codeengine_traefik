@@ -1,19 +1,59 @@
 ## Dynamic configuration
 http:
   middlewares:
-    ceapp-header:
+    app1-header:
       headers:
         customRequestHeaders:
-          Host: "appname.project_id.region.codeengine.appdomain.cloud"
+          Host: "appname1.project_id.region.codeengine.appdomain.cloud"
+    app2-header:
+      headers:
+        customRequestHeaders:
+          Host: "appname2.project_id.region.codeengine.appdomain.cloud"
+    app3-header:
+      headers:
+        customRequestHeaders:
+          Host: "appname3.project_id.region.codeengine.appdomain.cloud"
+    stripprefixes:
+      stripPrefix:
+        prefixes:
+          - "/path1"
+          - "/path2"
+        forceSlash: false
   routers:
-    my-router:
+    app1-router:
       entryPoints: ["websecure"]
+      priority: 1
       rule: "Host(`traefiktest.example.com`)"
-      service: "my-service"
+      service: "app1-service"
       middlewares:
-      - "ceapp-header"
+      - "app1-header"
+    app2-router:
+      entryPoints: ["websecure"]
+      priority: 10
+      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/path1/`)"
+      service: "app2-service"
+      middlewares:
+      - "stripprefixes"
+      - "app2-header"
+    app3-router:
+      entryPoints: ["websecure"]
+      priority: 11
+      rule: "Host(`traefiktest.example.com`) && PathPrefix(`/path2/`)"
+      service: "app3-service"
+      middlewares:
+      - "stripprefixes"
+      - "app3-header"
+
   services:
-    my-service:
+    app1-service:
       loadBalancer:
         servers:
-        - url: "https://appname.project_id.region.codeengine.appdomain.cloud/"
+        - url: "https://appname1.project_id.region.codeengine.appdomain.cloud/"
+    app2-service:
+      loadBalancer:
+        servers:
+        - url: "https://appname2.project_id.region.codeengine.appdomain.cloud/"
+    app3-service:
+      loadBalancer:
+        servers:
+        - url: "https://appname3.project_id.region.codeengine.appdomain.cloud/"
