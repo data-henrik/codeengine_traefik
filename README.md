@@ -36,5 +36,9 @@ To update the routing, edit `routes.yaml`, then update the configMap in place:
 ```
 kubectl create configmap cm-traefik-routes --from-file=routes.yaml=routes.yaml -o yaml   --dry-run=client | kubectl apply -f -
 ```   
+If there is not automatic refresh, you might need to run the following command to update the pods and thereby reread the configuration:
+```
+kubectl rollout restart deploy/traefik-deployment
+```
 
 Note that manually generating and updating the TLS certificates comes with the risk of them expiring. You could use built-in services like Secrets Manager or have the Ingress or Proxy service generate them.
