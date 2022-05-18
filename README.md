@@ -42,3 +42,13 @@ kubectl rollout restart deploy/traefik-deployment
 ```
 
 Note that manually generating and updating the TLS certificates comes with the risk of them expiring. You could use built-in services like Secrets Manager or have the Ingress or Proxy service generate them.
+
+### Multiple apps
+
+In traefik-deploy-simple.yaml:
+- add additional hostnames to `hosts`
+- add additional matching rules sections
+
+In routes.yaml:
+- add matching routers, middlewares, and services
+
