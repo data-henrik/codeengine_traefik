@@ -1,7 +1,7 @@
 # Code Engine custom domain with Cloud Foundry or Kubernetes service and Traefik
 For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom domain. It seems a feature is in the making. Until then, I use Traefik (https://traefik.io/traefik/) deployed to IBM Cloud with Public Cloud Foundry or the Kubernetes service as workaround. It only requires few simple steps.
 
-## Instructions for Kubernetes service (WIP)
+## Instructions for Kubernetes service
 
 The following assumes that you have a Standard cluster provisioned in the IBM Cloud Kubernetes service (IKS). For my tests and deployment, I have used the VPC-based clusters.
 
@@ -37,3 +37,4 @@ To update the routing, edit `routes.yaml`, then update the configMap in place:
 kubectl create configmap cm-traefik-routes --from-file=routes.yaml=routes.yaml -o yaml   --dry-run=client | kubectl apply -f -
 ```   
 
+Note that manually generating and updating the TLS certificates comes with the risk of them expiring. You could use built-in services like Secrets Manager or have the Ingress or Proxy service generate them.
