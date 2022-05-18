@@ -1,5 +1,5 @@
 # Code Engine custom domain with Cloud Foundry and Traefik
-For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom domain. It seems a feature in the making. Until then, I use Traefik (https://traefik.io/traefik/) deployed to IBM Cloud with Public Cloud Foundry as workaround. It only requires few simple steps.
+For some of my apps deployed on IBM Cloud Code Engine I am requiring a custom domain. It seems a feature is in the making. Until then, I use Traefik (https://traefik.io/traefik/) deployed to IBM Cloud with Public Cloud Foundry or the Kubernetes service as workaround. It only requires few simple steps.
 
 ## Instructions
 
